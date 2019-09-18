@@ -1,0 +1,2 @@
+# XHRFetchAJAX
+dataJSON//pass
