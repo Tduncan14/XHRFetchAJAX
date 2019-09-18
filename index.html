@@ -11,26 +11,41 @@
 
     <div id="output"></div>
 
+    <button id="load">Load</button>
     <script type ="text/javascript">
 
-     var xhr = new XMLHttpRequest();
+    var output = document.getElementById('output');
+    var button = document.getElementById('load');
 
-    xhr.open("GET",'https://randomuser.me/api/', true);
-    
-    xhr.onreadystatechange = function(){
+    button.addEventListener('click',function(e){
+        e.preventDefault();
+        loadAjax();
 
-        if(xhr.readyState == 4 && xhr.status == 200){
+        console.log('button has been clicked');
+    })
 
-            console.log('he',xhr.responseText);
+    function loadAjax(){
 
-            var JSONdata = JSON.parse(xhr.responseText);
+        var xhr = new XMLHttpRequest();
 
-            console.log(JSONdata,"parsed data");
+        xhr.open("GET","https://randomuser.me/api/",true);
+
+        xhr.onreadystatechange = function(){
+
+            if(xhr.status == 200 && xhr.readyState == 4){
+
+
+                console.log('this the text',xhr.responseText);
+                var JSONdata = JSON.parse(xhr.responseText);
+
+              console.log(JSONdata,"parsed data");
+            }
         }
-    }
-     xhr.send();
 
-    console.log(xhr)
+        xhr.send();
+
+    }
+    
     </script>
 </body>
 </html>
